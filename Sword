@@ -1,0 +1,13 @@
+local DebounceTable = {}
+
+script.Parent:WaitForChild("Hitbox").Touched:Connect(function(objectThatTouchesTheHitbox)
+	if objectThatTouchesTheHitbox.Parent then
+		if objectThatTouchesTheHitbox.Parent:FindFirstChild("Humanoid") then
+			if DebounceTable[objectThatTouchesTheHitbox.Parent] == true then return end
+			DebounceTable[objectThatTouchesTheHitbox.Parent] = true
+			objectThatTouchesTheHitbox.Parent.Humanoid:TakeDamage(30)
+			wait(2)
+			DebounceTable[objectThatTouchesTheHitbox.Parent] = nil
+		end
+	end
+end)
